@@ -212,6 +212,7 @@ const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
     <>
       <Paper
         sx={{
+          paddingBottom: '6rem',
           width: '100%',
 
           '& .MuiTablePagination-root': {

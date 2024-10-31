@@ -7,6 +7,9 @@ const Footer = () => {
       sx={{
         backgroundColor: '#9601fd',
         color: 'white',
+        position: 'fixed',
+        bottom: 0,
+        width: '100%',
       }}
     >
       <Container maxWidth="lg">

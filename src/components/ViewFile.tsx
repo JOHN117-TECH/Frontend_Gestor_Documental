@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 const apiUrl = import.meta.env.VITE_API_URL;
 const apiUrlDev = import.meta.env.VITE_API_URL_DEV;
 import axios from 'axios';
+import { Box, Typography } from '@mui/material';
+import NavBar from './UI/NavBar';
 const ViewFile = () => {
   const { fileName } = useParams();
   const [fileUrl, setFileUrl] = useState('');
@@ -29,18 +31,41 @@ const ViewFile = () => {
 
   return (
     <>
-      <h2>Viewing File {fileName}</h2>
-      {fileUrl ? (
-        <iframe
-          src={fileUrl}
-          width="100%"
-          height="600px"
-          style={{ border: 'none' }}
-          title="File Viewer"
-        />
-      ) : (
-        <p>Loading file...</p>
-      )}
+      <NavBar />
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          background: '#e3e3e3',
+        }}
+      >
+        <Typography
+          variant="h6"
+          color="primary"
+          gutterBottom
+          sx={{ marginLeft: '1rem', paddingY: '1rem' }}
+        >
+          Viewing File {fileName}
+        </Typography>
+
+        {fileUrl ? (
+          <iframe
+            src={fileUrl}
+            width="80%"
+            style={{
+              border: 'none',
+              paddingBottom: '5rem',
+              maxHeight: '100vh',
+              height: '60rem',
+            }}
+            title="File Viewer"
+          />
+        ) : (
+          <p>Loading file...</p>
+        )}
+      </Box>
     </>
   );
 };
