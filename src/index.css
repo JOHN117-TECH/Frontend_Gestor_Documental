@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos generales para el scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    /* Grosor del scrollbar vertical */
+    height: 8px;
+    /* Grosor del scrollbar horizontal */
+}
+
+/* Fondo del scrollbar */
+::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+/* Color del scrollbar */
+::-webkit-scrollbar-thumb {
+    background-color: #a020f0;
+
+    /* Color morado */
+    border-radius: 10px;
+}
+
+/* Color al pasar el cursor */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ba02ba;
+    /* Morado más claro */
+}
+
+
+.row-blue {
+    background-color: #d9ebf5;
+}
