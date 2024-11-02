@@ -72,6 +72,26 @@ const columns: Column[] = [
   },
 ];
 
+const Data = [
+  {
+    id: '14e62347-5ddf-4dbe-a473-e0e76a1af148',
+    filename:
+      '1730568868871-221229180-EX9-_GaX_Mm1a7bI_2XNRjvXIsbazYjFy-lectura-20-fundamental-203.pdf',
+    path: 'uploads/1730568868871-221229180-EX9-_GaX_Mm1a7bI_2XNRjvXIsbazYjFy-lectura-20-fundamental-203.pdf',
+    mimetype: 'application/pdf',
+    size: 896398,
+    createdAt: '2024-11-02T17:34:29.811Z',
+  },
+  {
+    id: '75de157e-ce61-458f-9357-43ad42f589b2',
+    filename: '1730568877822-59109266-Prueba tÃ©cnica DevOps.pdf',
+    path: 'uploads/1730568877822-59109266-Prueba tÃ©cnica DevOps.pdf',
+    mimetype: 'application/pdf',
+    size: 141661,
+    createdAt: '2024-11-02T17:34:38.056Z',
+  },
+];
+
 const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
@@ -95,8 +115,12 @@ const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
     setEditValues(initialEditValues);
   }, [files]);
 
-  const handleView = (fileName: string) => {
+  /* const handleView = (fileName: string) => {
     navigate(`/view/${fileName}`);
+  }; */
+
+  const handleView = (fileName: string) => {
+    console.log('Navigate a viewPage with file: ' + fileName);
   };
 
   const handleChange = (
@@ -162,13 +186,14 @@ const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
     });
   }, [files, order, orderBy]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const paginatedFiles = useMemo(() => {
     const startIndex = page * rowsPerPage;
     const endIndex = startIndex + rowsPerPage;
     return sortedFiles.slice(startIndex, endIndex);
   }, [sortedFiles, page, rowsPerPage]);
 
-  const handleUpdate = async (id: string) => {
+  /* const handleUpdate = async (id: string) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { createdAt, id: _, ...updatedData } = editValues[id]; // Excluye `createdAt` y `id`
     try {
@@ -186,9 +211,13 @@ const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
       console.error('Error updating file:', error);
       alert('Failed to update file.');
     }
+  }; */
+  const handleUpdate = async (id: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    console.log('handleUpdate with id: ' + id);
   };
 
-  const deleteFile = async (filename: string) => {
+  /* const deleteFile = async (filename: string) => {
     try {
       const response = await axios.delete(
         apiUrl ? `${apiUrl}files/${filename}` : `${apiUrlDev}files/${filename}`
@@ -206,6 +235,10 @@ const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
       console.error('Error:', error);
       alert('An error occurred while deleting the file.');
     }
+  }; */
+
+  const deleteFile = async (filename: string) => {
+    console.log('DeleteFile with filename: ' + filename);
   };
 
   return (
@@ -289,7 +322,7 @@ const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {paginatedFiles.map((file, index) => (
+                {/*paginatedFiles.map((file, index) => (
                   <TableRow
                     key={file.id}
                     className={index % 2 === 1 ? 'row-blue' : ''}
@@ -395,12 +428,13 @@ const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
                           }}
                         >
                           <a
-                            href={
+                             href={
                               apiUrl
                                 ? `${apiUrl}files/${file.filename}`
                                 : `${apiUrlDev}files/${file.filename}`
                             }
-                            download
+                            download 
+                            href="#"
                           >
                             <Button variant="outlined" color="warning">
                               Download{' '}
@@ -447,6 +481,99 @@ const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
                           ) : null}
                           <Button
                             onClick={() => handleClickOpen(file)}
+                            variant="outlined"
+                            color="error"
+                          >
+                            Delete{' '}
+                            <DeleteForeverOutlinedIcon
+                              style={{ color: red[500], paddingLeft: '0.5rem' }}
+                            />
+                          </Button>
+                        </Box>
+                      </Box>
+                    </TableCell>
+                  </TableRow>
+                ))*/}
+                {Data.map((data) => (
+                  <TableRow key={data.id}>
+                    <TableCell>{data.id}</TableCell>
+                    <TableCell>{data.filename}</TableCell>
+                    <TableCell>{data.path}</TableCell>
+                    <TableCell>{data.mimetype}</TableCell>
+                    <TableCell>{data.size}</TableCell>
+                    <TableCell>
+                      {new Date(data.createdAt).toLocaleDateString('es-ES')}{' '}
+                      {new Date(data.createdAt).toLocaleTimeString('es-ES', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true,
+                      })}
+                    </TableCell>
+                    <TableCell style={{ border: '1px solid #ddd' }}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '14px',
+                          fontWeight: 'bold',
+                          gap: 1,
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            gap: 1,
+                          }}
+                        >
+                          <a href="#">
+                            <Button variant="outlined" color="warning">
+                              Download{' '}
+                              <DownloadIcon
+                                style={{
+                                  color: orange[500],
+                                  paddingLeft: '0.5rem',
+                                }}
+                              />
+                            </Button>
+                          </a>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={() => handleUpdate(data.id)}
+                          >
+                            Update{' '}
+                            <UpgradeIcon
+                              style={{ color: 'white', paddingLeft: '0.5rem' }}
+                            />
+                          </Button>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            gap: 1,
+                          }}
+                        >
+                          {data.mimetype === 'application/pdf' ? (
+                            <Button
+                              variant="outlined"
+                              color="success"
+                              onClick={() => handleView(data.filename)}
+                            >
+                              View{' '}
+                              <VisibilityIcon
+                                style={{
+                                  color: green[500],
+                                  paddingLeft: '0.5rem',
+                                }}
+                              />
+                            </Button>
+                          ) : null}
+                          <Button
+                            onClick={() => handleClickOpen(data)}
                             variant="outlined"
                             color="error"
                           >
