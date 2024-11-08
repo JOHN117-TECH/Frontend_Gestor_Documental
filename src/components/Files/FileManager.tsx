@@ -5,8 +5,8 @@ import FileList from './FileList';
 
 import { Box } from '@mui/material';
 import FileUpload from './FileUpload';
-import NavBar from '../UI/NavBar';
-import Footer from '../UI/Footer';
+import NavBar from '../Layouts/NavBar';
+import Footer from '../Layouts/Footer';
 
 import { File } from '../../interfaces';
 

@@ -4,7 +4,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const apiUrlDev = import.meta.env.VITE_API_URL_DEV;
 import axios from 'axios';
 import { Box, Typography } from '@mui/material';
-import NavBar from './UI/NavBar';
+import NavBar from './Layouts/NavBar';
 const ViewFile = () => {
   const { fileName } = useParams();
   const [fileUrl, setFileUrl] = useState('');
