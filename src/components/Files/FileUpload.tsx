@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Box, Button, Typography } from '@mui/material';
 
-const apiUrl = import.meta.env.VITE_API_URL;
-const apiUrlDev = import.meta.env.VITE_API_URL_DEV;
+/* const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrlDev = import.meta.env.VITE_API_URL_DEV; */
 
 interface FileUploadProps {
   onUpload: (filename: string) => void;
@@ -29,7 +29,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onUpload }) => {
 
     try {
       const response = await axios.post<{ filename: string }>(
-        apiUrl ? `${apiUrl}files/upload` : `${apiUrlDev}files/upload`,
+        `https://backend-gestor-documental.onrender.com/files/upload`,
         formData,
         {
           headers: {

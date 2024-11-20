@@ -10,8 +10,8 @@ import Footer from '../Layouts/Footer';
 
 import { File } from '../../interfaces';
 
-const apiUrl = import.meta.env.VITE_API_URL;
-const apiUrlDev = import.meta.env.VITE_API_URL_DEV;
+/* const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrlDev = import.meta.env.VITE_API_URL_DEV; */
 
 const FileManager: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
@@ -19,7 +19,7 @@ const FileManager: React.FC = () => {
   const fetchFiles = async () => {
     try {
       const response = await axios.get<File[]>(
-        apiUrl ? `${apiUrl}files` : `${apiUrlDev}files`
+        `https://backend-gestor-documental.onrender.com/files`
       );
       setFiles(response.data);
     } catch (error) {

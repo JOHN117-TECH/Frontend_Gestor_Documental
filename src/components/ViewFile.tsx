@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-const apiUrl = import.meta.env.VITE_API_URL;
-const apiUrlDev = import.meta.env.VITE_API_URL_DEV;
+/* const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrlDev = import.meta.env.VITE_API_URL_DEV; */
 import axios from 'axios';
 import { Box, Typography } from '@mui/material';
 import NavBar from './Layouts/NavBar';
@@ -11,9 +11,7 @@ const ViewFile = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const url = apiUrl
-      ? `${apiUrl}files/${fileName}`
-      : `${apiUrlDev}files/${fileName}`;
+    const url = `https://backend-gestor-documental.onrender.com/files/${fileName}`;
     axios
       .get(url, { responseType: 'blob' })
       .then((response) => {

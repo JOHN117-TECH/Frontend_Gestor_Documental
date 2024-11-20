@@ -33,8 +33,8 @@ import { Column, FileListProps, File } from '../../interfaces';
 import Modal from '../Modal/Modal';
 
 /* VARIABLES DE ENTORNO */
-const apiUrl = import.meta.env.VITE_API_URL;
-const apiUrlDev = import.meta.env.VITE_API_URL_DEV;
+/* const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrlDev = import.meta.env.VITE_API_URL_DEV; */
 
 const columns: Column[] = [
   { id: 'id', label: 'Id', minWidth: 120 },
@@ -173,7 +173,7 @@ const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
     const { createdAt, id: _, ...updatedData } = editValues[id]; // Excluye `createdAt` y `id`
     try {
       await axios.patch(
-        apiUrl ? `${apiUrl}files/${id}` : `${apiUrlDev}/files/${id}`,
+        `https://backend-gestor-documental.onrender.com/files/${id}`,
         updatedData
       );
       alert('File updated successfully!');
@@ -191,7 +191,7 @@ const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
   const deleteFile = async (filename: string) => {
     try {
       const response = await axios.delete(
-        apiUrl ? `${apiUrl}files/${filename}` : `${apiUrlDev}files/${filename}`
+        `https://backend-gestor-documental.onrender.com/files/${filename}`
       );
 
       if (response.status === 200) {
@@ -292,7 +292,7 @@ const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
                 {paginatedFiles.map((file, index) => (
                   <TableRow
                     key={file.id}
-                    className={index % 2 === 1 ? 'row-blue' : ''}
+                    className={index % 2 === 1 ? 'row--blue' : ''}
                   >
                     <TableCell
                       style={{
@@ -395,11 +395,7 @@ const FileList: FC<FileListProps> = ({ files, onSetFiles }) => {
                           }}
                         >
                           <a
-                            href={
-                              apiUrl
-                                ? `${apiUrl}files/${file.filename}`
-                                : `${apiUrlDev}files/${file.filename}`
-                            }
+                            href={`https://backend-gestor-documental.onrender.com/files/${file.filename}`}
                             download
                           >
                             <Button variant="outlined" color="warning">
